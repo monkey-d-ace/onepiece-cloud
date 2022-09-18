@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: user-service
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+  server:
+    waitTimeInMsWhenSyncEmpty: 30
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

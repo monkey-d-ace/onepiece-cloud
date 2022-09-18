@@ -1,0 +1,4 @@
+org/onepiece/repository/CurrencyExchangeRepository.class
+org/onepiece/CurrencyExchangeApplication.class
+org/onepiece/controller/CurrencyExchangeController.class
+org/onepiece/domain/CurrencyExchange.class
