@@ -24,7 +24,7 @@ public class CurrencyExchangeController {
         if (currencyExchange == null) {
             throw new RuntimeException("Unable to find this record");
         }
-        currencyExchange.setEnvironment(environment.getProperty("local.server.port"));
+        currencyExchange.setEnvironment(environment.getProperty("local.server.hostname", "localhost") + ":" + environment.getProperty("local.server.port"));
         return currencyExchange;
     }
 }

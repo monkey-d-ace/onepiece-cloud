@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: gateway
+  config:
+    import: optional:configserver:http://localhost:8888
+  cloud:
+    gateway:
+      routes:
+        - id: currency-exchange
+          uri: lb://currency-exchange
+          predicates:
+            - Path=/currency-exchange/**
+        - id: currency-conversion
+          uri: lb://currency-conversion
+          predicates:
+            - Path=/currency-conversion/**
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configuration:
+          '[/**]':
+            allowed-origins:
+              - "http://localhost:3000"
+            allowed-methods:
+              - "GET"
+              - "POST"
+              - "PUT"
+              - "DELETE"
+              - "OPTIONS"
+            allowed-headers: "*"
+            allow-credentials: true
+            max-age: 36000
+
+server:
+  port: 8765
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://eureka:8761/eureka/,http://nacos:8762/eureka,http://consul:8763/eureka
+  server:
+    waitTimeInMsWhenSyncEmpty: 30
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
