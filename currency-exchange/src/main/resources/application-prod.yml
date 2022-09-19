@@ -20,7 +20,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     service-url:
-      defaultZone: http://eureka:8761/eureka/,http://nacos:8762/eureka,http://consul:8763/eureka
+      defaultZone: http://eureka:8761/eureka/
   server:
     waitTimeInMsWhenSyncEmpty: 30
 management:
