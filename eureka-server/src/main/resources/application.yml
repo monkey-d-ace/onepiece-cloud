@@ -1,16 +1,48 @@
-server:
-  port: 8761
 spring:
   application:
     name: eureka
+  profiles:
+    active: prod2
 eureka:
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
+  prefer-ip-address: false
   server:
-    waitTimeInMsWhenSyncEmpty: 0
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+    peer-node-read-timeout-ms: 5000
+  client:
+    serviceUrl:
+      defaultZone: http://eureka1:8761/eureka,http://eureka2:8762/eureka,http://eureka3:8763/eureka
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  application:
+    name: eureka
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: eureka1
+---
+spring:
+  config:
+    activate:
+      on-profile: prod1
+  application:
+    name: eureka
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: eureka2
+---
+spring:
+  config:
+    activate:
+      on-profile: prod2
+  application:
+    name: eureka
+server:
+  port: 8763
+eureka:
+  instance:
+    hostname: eureka3
